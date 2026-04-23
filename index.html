@@ -140,6 +140,57 @@
     .cta h2 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; letter-spacing: -0.02em; margin-bottom: 18px; }
     .cta p { color: var(--muted); font-size: 1.05rem; max-width: 500px; margin: 0 auto 40px; }
 
+    /* MODAL */
+    .modal-overlay { display: none; position: fixed; inset: 0; z-index: 999; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); align-items: center; justify-content: center; padding: 20px; }
+    .modal-overlay.open { display: flex; }
+    .modal { background: var(--bg3); border: 1px solid var(--border); border-radius: 24px; width: 100%; max-width: 600px; max-height: 90vh; overflow-y: auto; position: relative; animation: modalIn .3s cubic-bezier(0.34,1.56,0.64,1) both; }
+    @keyframes modalIn { from { opacity:0; transform: scale(0.92) translateY(20px); } to { opacity:1; transform: scale(1) translateY(0); } }
+    .modal-close { position: absolute; top: 20px; right: 20px; width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.06); border: 1px solid var(--border); color: var(--muted); font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background .2s, color .2s; }
+    .modal-close:hover { background: rgba(255,255,255,0.12); color: var(--text); }
+    .modal-header { padding: 36px 40px 24px; border-bottom: 1px solid var(--border); }
+    .step-indicator { display: flex; gap: 6px; margin-bottom: 20px; }
+    .step-pip { height: 4px; border-radius: 100px; flex: 1; background: rgba(255,255,255,0.08); transition: background .3s; }
+    .step-pip.active { background: var(--green); }
+    .step-pip.done { background: var(--green2); }
+    .modal-header h2 { font-size: 1.4rem; font-weight: 800; margin-bottom: 6px; }
+    .modal-header p { color: var(--muted); font-size: 0.88rem; }
+    .step-counter { font-size: 0.75rem; font-weight: 600; color: var(--green); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+    .modal-body { padding: 32px 40px; }
+    .modal-footer { padding: 20px 40px 32px; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+    .fiq-group { margin-bottom: 22px; }
+    .fiq-group label { display: block; font-size: 0.8rem; font-weight: 700; color: var(--muted); margin-bottom: 8px; letter-spacing: 0.04em; text-transform: uppercase; }
+    .fiq-group input, .fiq-group select, .fiq-group textarea { width: 100%; padding: 13px 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; color: var(--text); font-size: 0.95rem; font-family: 'Inter', sans-serif; outline: none; transition: border-color .2s, box-shadow .2s; }
+    .fiq-group input::placeholder, .fiq-group textarea::placeholder { color: #475569; }
+    .fiq-group select option { background: #1e2535; }
+    .fiq-group input:focus, .fiq-group select:focus, .fiq-group textarea:focus { border-color: rgba(34,197,94,0.5); box-shadow: 0 0 0 3px rgba(34,197,94,0.1); }
+    .fiq-group input.error, .fiq-group select.error { border-color: rgba(239,68,68,0.5); }
+    .fiq-error { color: #f87171; font-size: 0.75rem; margin-top: 5px; display: none; }
+    .fiq-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .fiq-hint { font-size: 0.78rem; color: var(--muted); margin-top: 5px; }
+    .fiq-slider-wrap { margin-top: 8px; }
+    .fiq-slider { width: 100%; -webkit-appearance: none; height: 6px; border-radius: 100px; background: rgba(255,255,255,0.08); outline: none; }
+    .fiq-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%; background: var(--green); cursor: pointer; border: 3px solid var(--bg3); box-shadow: 0 0 8px rgba(34,197,94,0.4); }
+    .fiq-slider-labels { display: flex; justify-content: space-between; margin-top: 8px; }
+    .fiq-slider-labels span { font-size: 0.72rem; color: var(--muted); }
+    .fiq-slider-val { text-align: center; font-size: 1.8rem; font-weight: 900; color: var(--green); margin-top: 10px; }
+    .fiq-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+    .fiq-chip { padding: 8px 16px; border-radius: 100px; font-size: 0.82rem; font-weight: 600; background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: var(--muted); cursor: pointer; transition: all .15s; }
+    .fiq-chip:hover { border-color: rgba(34,197,94,0.4); color: var(--text); }
+    .fiq-chip.selected { background: rgba(34,197,94,0.15); border-color: rgba(34,197,94,0.5); color: var(--green); }
+    .btn-back { background: transparent; color: var(--muted); border: 1px solid var(--border); padding: 12px 24px; border-radius: 10px; font-size: 0.9rem; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; transition: all .2s; }
+    .btn-back:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+    .btn-next { background: var(--green); color: #000; border: none; padding: 12px 28px; border-radius: 10px; font-size: 0.9rem; font-weight: 700; cursor: pointer; font-family: 'Inter', sans-serif; transition: all .2s; margin-left: auto; }
+    .btn-next:hover { background: var(--green2); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(34,197,94,0.3); }
+    .btn-submit-form { background: var(--green); color: #000; border: none; padding: 14px 32px; border-radius: 10px; font-size: 1rem; font-weight: 700; cursor: pointer; font-family: 'Inter', sans-serif; transition: all .2s; margin-left: auto; display: flex; align-items: center; gap: 8px; }
+    .btn-submit-form:hover { background: var(--green2); box-shadow: 0 6px 20px rgba(34,197,94,0.3); }
+    .form-success { display: none; text-align: center; }
+    .success-circle { width: 72px; height: 72px; border-radius: 50%; background: rgba(34,197,94,0.15); border: 2px solid rgba(34,197,94,0.4); display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 20px; animation: popIn .4s cubic-bezier(0.34,1.56,0.64,1) both; }
+    @keyframes popIn { from { transform: scale(0); opacity:0; } to { transform: scale(1); opacity:1; } }
+    .form-success h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 10px; }
+    .form-success p { color: var(--muted); font-size: 0.9rem; line-height: 1.6; margin-bottom: 24px; }
+    .summary-pills { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 24px; }
+    .summary-pill { padding: 6px 14px; border-radius: 100px; font-size: 0.75rem; font-weight: 600; background: rgba(34,197,94,0.1); color: var(--green); border: 1px solid rgba(34,197,94,0.2); }
+
     footer { padding: 40px 60px; background: var(--bg); border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
     footer p { color: var(--muted); font-size: 0.82rem; }
     .footer-links { display: flex; gap: 24px; }
@@ -147,8 +198,7 @@
     .footer-links a:hover { color: var(--text); }
 
     @media (max-width: 900px) { .pricing-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; } .pricing-card.recommended { transform: scale(1); } }
-    @media (max-width: 768px) { nav { padding: 16px 20px; } .nav-links { display: none; } .plan-grid { grid-template-columns: 1fr; } .plan-section { border-right: none !important; } footer { padding: 32px 20px; flex-direction: column; text-align: center; } }
-
+    @media (max-width: 768px) { nav { padding: 16px 20px; } .nav-links { display: none; } .plan-grid { grid-template-columns: 1fr; } .plan-section { border-right: none !important; } footer { padding: 32px 20px; flex-direction: column; text-align: center; } .fiq-row { grid-template-columns: 1fr; } .modal-header, .modal-body, .modal-footer { padding-left: 24px; padding-right: 24px; } }
     @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
     .hero > * { animation: fadeUp .6s ease both; }
     .hero > *:nth-child(2) { animation-delay: .1s; }
@@ -160,11 +210,8 @@
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
-  <a class="nav-logo" href="#">
-    <span style="color:#f1f5f9">Form</span><span style="color:#22c55e">IQ</span>
-  </a>
+  <a class="nav-logo" href="#"><span style="color:#f1f5f9">Form</span><span style="color:#22c55e">IQ</span></a>
   <div class="nav-links">
     <a href="#features">Features</a>
     <a href="#how">How it works</a>
@@ -172,20 +219,17 @@
     <a href="#pricing">Pricing</a>
     <a href="#cta">Get Started</a>
   </div>
-  <a class="nav-cta" href="#cta">Start Free →</a>
+  <a class="nav-cta" href="#" onclick="openModal();return false;">Start Free →</a>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div>
-    <div class="hero-wordmark">
-      <span style="color:#f1f5f9">Form</span><span style="color:#22c55e;text-shadow:0 0 30px rgba(34,197,94,0.4)">IQ</span>
-    </div>
+    <div class="hero-wordmark"><span style="color:#f1f5f9">Form</span><span style="color:#22c55e;text-shadow:0 0 30px rgba(34,197,94,0.4)">IQ</span></div>
     <div class="hero-badge">🤖 AI-Powered · Fully Personalised</div>
     <h1>Your <span class="highlight">plan.</span><br/>Every single day.</h1>
     <p>Stop guessing. <strong style="color:#f1f5f9">Form</strong><strong style="color:#22c55e">IQ</strong> gives you one clear daily plan — exercise, diet, sleep & habits — built around your goal and how you feel right now.</p>
     <div class="hero-btns">
-      <a class="btn-primary" href="#cta">🚀 Get My Daily Plan</a>
+      <a class="btn-primary" href="#" onclick="openModal();return false;">🚀 Get My Daily Plan</a>
       <a class="btn-secondary" href="#how">See how it works →</a>
     </div>
     <div class="hero-stats">
@@ -197,17 +241,13 @@
   </div>
 </section>
 
-<!-- DAILY PLAN PREVIEW -->
 <section class="plan-preview" id="preview">
   <div class="section-label">📋 Sample Output</div>
   <h2 class="section-title">What you get every day</h2>
   <p class="section-sub">One tap. One plan. Everything you need — nothing you don't.</p>
   <div class="plan-card">
     <div class="plan-header">
-      <div class="plan-header-left">
-        <h3>Thursday, April 23 — Daily Plan</h3>
-        <p>Goal: Lose Weight &nbsp;·&nbsp; Energy: High ⚡</p>
-      </div>
+      <div class="plan-header-left"><h3>Thursday, April 23 — Daily Plan</h3><p>Goal: Lose Weight &nbsp;·&nbsp; Energy: High ⚡</p></div>
       <div class="plan-badges">
         <span class="badge badge-green">✅ 1,600 kcal</span>
         <span class="badge badge-orange">🔥 7-Day Streak</span>
@@ -251,7 +291,7 @@
         <div class="plan-section-icon">✅</div>
         <h4>HABIT OF THE DAY</h4>
         <p style="font-size:.92rem;font-weight:600;margin-bottom:10px">No liquid calories today.</p>
-        <p style="font-size:.8rem;color:var(--muted);line-height:1.6">Water, black coffee, or unsweetened herbal tea only. Sugary drinks are hidden calorie traps — cutting them is one of the fastest wins for weight loss.</p>
+        <p style="font-size:.8rem;color:var(--muted);line-height:1.6">Water, black coffee, or unsweetened herbal tea only.</p>
         <div style="margin-top:16px;padding:12px;background:rgba(34,197,94,0.07);border-radius:8px;border:1px solid rgba(34,197,94,0.15)">
           <p style="font-size:.78rem;color:var(--green);font-weight:600">💬 FormIQ says:</p>
           <p style="font-size:.78rem;color:var(--muted);margin-top:4px">You came in with high energy — don't waste it. Push hard, eat clean, sleep well. This is that day.</p>
@@ -261,35 +301,32 @@
   </div>
 </section>
 
-<!-- FEATURES -->
 <section class="features" id="features">
   <div class="section-label">⚡ Features</div>
   <h2 class="section-title">Everything in one place</h2>
   <p class="section-sub">No app-switching. No decision fatigue. Just your plan.</p>
   <div class="features-grid">
-    <div class="feature-card"><div class="feature-icon green">🏋️</div><h3>Adaptive Daily Workouts</h3><p>Every workout is built around how you feel today — low, medium, or high energy. FormIQ adjusts intensity automatically so you always do the right session.</p></div>
-    <div class="feature-card"><div class="feature-icon orange">🥗</div><h3>7-Day Meal Plan</h3><p>Get a full week of meals — breakfast, lunch, dinner & snacks — with calorie counts, tailored to your goal and dietary preference. Meal prep tips included.</p></div>
-    <div class="feature-card"><div class="feature-icon blue">📍</div><h3>Location-Smart Recommendations</h3><p>Enter your city and get real-time recommendations for nearby gyms and outdoor fitness spots — parks, trails, running paths — matched to your goal.</p></div>
-    <div class="feature-card"><div class="feature-icon purple">📊</div><h3>Weekly Progress Summary</h3><p>Compare this week vs last week across sleep, steps, calories, and mood. See exactly how close you are to your target weight with timeline estimates.</p></div>
-    <div class="feature-card"><div class="feature-icon orange">🔥</div><h3>Streak Motivation System</h3><p>Hit 3+ days in a row and unlock a personalised motivational boost, emoji streak bar, and milestone badges — from 3-Day Warrior to 100-Day Elite Performer.</p></div>
-    <div class="feature-card"><div class="feature-icon green">😴</div><h3>Sleep & Habit Guidance</h3><p>A specific bedtime, wake-up time, and one non-negotiable daily habit every single day — the small consistent actions that build long-term discipline.</p></div>
+    <div class="feature-card"><div class="feature-icon green">🏋️</div><h3>Adaptive Daily Workouts</h3><p>Every workout is built around how you feel today. FormIQ adjusts intensity automatically so you always do the right session.</p></div>
+    <div class="feature-card"><div class="feature-icon orange">🥗</div><h3>7-Day Meal Plan</h3><p>A full week of meals with calorie counts, tailored to your goal and dietary preference. Meal prep tips included.</p></div>
+    <div class="feature-card"><div class="feature-icon blue">📍</div><h3>Location-Smart Recommendations</h3><p>Enter your city and get real-time recommendations for nearby gyms and outdoor fitness spots matched to your goal.</p></div>
+    <div class="feature-card"><div class="feature-icon purple">📊</div><h3>Weekly Progress Summary</h3><p>Compare this week vs last week across sleep, steps, calories, and mood with target weight timeline estimates.</p></div>
+    <div class="feature-card"><div class="feature-icon orange">🔥</div><h3>Streak Motivation System</h3><p>Hit 3+ days in a row and unlock a motivational boost, emoji streak bar, and milestone badges — up to 100-Day Elite Performer.</p></div>
+    <div class="feature-card"><div class="feature-icon green">😴</div><h3>Sleep & Habit Guidance</h3><p>A specific bedtime, wake-up time, and one non-negotiable daily habit — the small consistent actions that build long-term discipline.</p></div>
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
 <section class="how" id="how">
   <div class="section-label">🗺️ Process</div>
   <h2 class="section-title">How it works</h2>
   <p class="section-sub">Four steps. One minute. Your entire day planned.</p>
   <div class="steps">
-    <div class="step"><div class="step-num s1">1</div><div class="step-content"><h3>Tell FormIQ your goal & energy</h3><p>Choose your goal (lose or gain weight) and how you feel today. That's all that's required — everything else is optional but makes the plan richer.</p></div></div>
-    <div class="step"><div class="step-num s2">2</div><div class="step-content"><h3>Add optional context</h3><p>Drop in your location for gym recommendations, toggle on a 7-day meal plan, log your streak, or add weekly stats for a progress comparison.</p></div></div>
-    <div class="step"><div class="step-num s3">3</div><div class="step-content"><h3>Get your plan instantly</h3><p>FormIQ builds your complete daily plan in seconds — workout, meals, sleep, habit of the day, and nearby fitness spots — all in one place.</p></div></div>
-    <div class="step"><div class="step-num s4">4</div><div class="step-content"><h3>Execute. Come back tomorrow.</h3><p>Follow the plan, track your streak, and return the next day. FormIQ adapts to your energy and progress — no willpower needed to figure out what to do.</p></div></div>
+    <div class="step"><div class="step-num s1">1</div><div class="step-content"><h3>Tell FormIQ your goal & energy</h3><p>Choose your goal and how you feel today. That's all that's required — everything else makes the plan richer.</p></div></div>
+    <div class="step"><div class="step-num s2">2</div><div class="step-content"><h3>Fill in your profile</h3><p>Height, weight, diet, location, training time — FormIQ collects everything it needs to personalise your plan precisely.</p></div></div>
+    <div class="step"><div class="step-num s3">3</div><div class="step-content"><h3>Get your plan instantly</h3><p>FormIQ builds your complete daily plan in seconds — workout, meals, sleep, habit of the day, and nearby fitness spots.</p></div></div>
+    <div class="step"><div class="step-num s4">4</div><div class="step-content"><h3>Execute. Come back tomorrow.</h3><p>Follow the plan, track your streak, and return the next day. FormIQ adapts to your progress — no willpower needed.</p></div></div>
   </div>
 </section>
 
-<!-- STREAKS -->
 <section class="streak-section" id="streaks">
   <div class="section-label">🔥 Momentum</div>
   <h2 class="section-title">Stay on fire with streaks</h2>
@@ -310,7 +347,6 @@
   </div>
 </section>
 
-<!-- PRICING -->
 <section class="pricing" id="pricing">
   <div class="section-label">💳 Pricing</div>
   <h2 class="section-title">Simple, transparent pricing</h2>
@@ -319,21 +355,19 @@
     <div class="pricing-card">
       <p class="plan-name">Pro</p>
       <div class="plan-price"><span class="currency">$</span><span class="amount">9</span><span class="period">/month</span></div>
-      <p class="plan-desc">Everything you need to get started and build a consistent daily routine with FormIQ.</p>
+      <p class="plan-desc">Everything you need to get started with FormIQ.</p>
       <div class="plan-divider"></div>
       <ul class="plan-features">
-        <li><span class="check yes">✓</span> Daily personalised plan (exercise, diet, sleep, habit)</li>
-        <li><span class="check yes">✓</span> Lose or gain weight goal</li>
+        <li><span class="check yes">✓</span> Daily personalised plan</li>
         <li><span class="check yes">✓</span> Energy-adaptive workouts</li>
-        <li><span class="check yes">✓</span> Daily meal suggestions (1,600–2,500 kcal)</li>
+        <li><span class="check yes">✓</span> Daily meal suggestions</li>
         <li><span class="check yes">✓</span> Streak tracking up to 30 days</li>
-        <li><span class="check yes">✓</span> FormIQ daily motivation message</li>
+        <li><span class="check yes">✓</span> FormIQ daily motivation</li>
         <li class="dimmed"><span class="check no">✕</span> 7-day meal plan generator</li>
         <li class="dimmed"><span class="check no">✕</span> Weekly progress summary</li>
         <li class="dimmed"><span class="check no">✕</span> Location-based gym finder</li>
-        <li class="dimmed"><span class="check no">✕</span> Dietary preference support</li>
       </ul>
-      <a href="#" class="btn-plan outline">Get Started →</a>
+      <a href="#" class="btn-plan outline" onclick="openModal();return false;">Get Started →</a>
     </div>
     <div class="pricing-card recommended">
       <div class="rec-badge">⭐ Most Popular</div>
@@ -344,57 +378,362 @@
       <ul class="plan-features">
         <li><span class="check yes">✓</span> Everything in Pro</li>
         <li><span class="check yes">✓</span> 7-day personalised meal plan</li>
-        <li><span class="check yes">✓</span> Dietary preferences (vegan, gluten-free & more)</li>
-        <li><span class="check yes">✓</span> Weekly progress summary (sleep, steps, mood)</li>
-        <li><span class="check yes">✓</span> Weight progress tracker with timeline</li>
-        <li><span class="check yes">✓</span> Unlimited streak tracking + all badges</li>
-        <li><span class="check yes">✓</span> 📍 Nearby gym & outdoor spot finder</li>
+        <li><span class="check yes">✓</span> Dietary preferences support</li>
+        <li><span class="check yes">✓</span> Weekly progress summary</li>
+        <li><span class="check yes">✓</span> Weight progress tracker</li>
+        <li><span class="check yes">✓</span> Unlimited streak tracking</li>
+        <li><span class="check yes">✓</span> 📍 Nearby gym & outdoor finder</li>
         <li class="dimmed"><span class="check no">✕</span> BMI & calorie personalisation</li>
-        <li class="dimmed"><span class="check no">✕</span> Priority AI response speed</li>
       </ul>
-      <a href="#" class="btn-plan solid">Start Pro Plus →</a>
+      <a href="#" class="btn-plan solid" onclick="openModal();return false;">Start Pro Plus →</a>
     </div>
     <div class="pricing-card">
       <p class="plan-name" style="color:var(--orange)">Elite</p>
       <div class="plan-price"><span class="currency">$</span><span class="amount">39</span><span class="period">/month</span></div>
-      <p class="plan-desc">Maximum personalisation and every FormIQ feature unlocked for serious results.</p>
+      <p class="plan-desc">Every FormIQ feature unlocked for serious results.</p>
       <div class="plan-divider"></div>
       <ul class="plan-features">
         <li><span class="check yes">✓</span> Everything in Pro Plus</li>
         <li><span class="check yes">✓</span> BMI-based calorie & macro targets</li>
         <li><span class="check yes">✓</span> Priority AI response speed</li>
-        <li><span class="check yes">✓</span> Advanced body composition tracking</li>
         <li><span class="check yes">✓</span> Rest day & recovery planner</li>
         <li><span class="check yes">✓</span> Supplement recommendations</li>
-        <li><span class="check yes">✓</span> Nearby healthy restaurant finder</li>
-        <li><span class="check yes">✓</span> Downloadable PDF daily report</li>
-        <li><span class="check yes">✓</span> 👑 Elite badge + exclusive content</li>
-        <li><span class="check yes">✓</span> Early access to new FormIQ features</li>
+        <li><span class="check yes">✓</span> Healthy restaurant finder</li>
+        <li><span class="check yes">✓</span> Downloadable PDF report</li>
+        <li><span class="check yes">✓</span> 👑 Elite badge + early access</li>
       </ul>
-      <a href="#" class="btn-plan outline" style="border-color:rgba(249,115,22,0.3);color:var(--orange)">Go Elite →</a>
+      <a href="#" class="btn-plan outline" style="border-color:rgba(249,115,22,0.3);color:var(--orange)" onclick="openModal();return false;">Go Elite →</a>
     </div>
   </div>
   <p class="pricing-note">🔒 Cancel anytime · No hidden fees · 7-day free trial on all plans</p>
 </section>
 
-<!-- CTA -->
 <section class="cta" id="cta">
   <h2>Ready to stop guessing<br/>and start <span style="color:var(--green)">doing?</span></h2>
   <p>Your first FormIQ daily plan takes 60 seconds to generate. No overwhelm. No excuses. Just results.</p>
   <div class="hero-btns">
-    <a class="btn-primary" href="#">🚀 Get My Free Daily Plan</a>
+    <a class="btn-primary" href="#" onclick="openModal();return false;">🚀 Get My Free Daily Plan</a>
     <a class="btn-secondary" href="#preview">See a sample plan</a>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ONBOARDING MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="formSteps">
+
+      <!-- STEP 1: BASICS -->
+      <div class="step-panel" id="step1">
+        <div class="modal-header">
+          <div class="step-counter">Step 1 of 6</div>
+          <div class="step-indicator">
+            <div class="step-pip active"></div><div class="step-pip"></div><div class="step-pip"></div><div class="step-pip"></div><div class="step-pip"></div><div class="step-pip"></div>
+          </div>
+          <h2>Let's start with the basics 📏</h2>
+          <p>Your height, weight and age help FormIQ calculate your ideal calorie targets and training intensity.</p>
+        </div>
+        <div class="modal-body">
+          <div class="fiq-row">
+            <div class="fiq-group">
+              <label>Height</label>
+              <input type="number" id="height" placeholder="e.g. 175" min="100" max="250"/>
+              <div class="fiq-error" id="err-height">Please enter your height.</div>
+            </div>
+            <div class="fiq-group">
+              <label>Unit</label>
+              <select id="heightUnit"><option value="cm">cm</option><option value="ft">ft / in</option></select>
+            </div>
+          </div>
+          <div class="fiq-row">
+            <div class="fiq-group">
+              <label>Current Weight</label>
+              <input type="number" id="weight" placeholder="e.g. 80" min="30" max="300"/>
+              <div class="fiq-error" id="err-weight">Please enter your weight.</div>
+            </div>
+            <div class="fiq-group">
+              <label>Unit</label>
+              <select id="weightUnit"><option value="kg">kg</option><option value="lbs">lbs</option></select>
+            </div>
+          </div>
+          <div class="fiq-group">
+            <label>Age</label>
+            <input type="number" id="age" placeholder="e.g. 28" min="14" max="99" oninput="checkAge()"/>
+            <div class="fiq-error" id="err-age">Please enter your age.</div>
+          </div>
+          <div id="parentalBanner" style="display:none;padding:14px 16px;background:rgba(249,115,22,0.08);border:1px solid rgba(249,115,22,0.3);border-radius:10px;margin-top:4px">
+            <p style="font-size:.85rem;color:var(--orange);font-weight:700;margin-bottom:4px">⚠️ Parental Consent Required</p>
+            <p style="font-size:.8rem;color:var(--muted);line-height:1.5">You are under 18. A parent or guardian must give consent on the final step of this form before your programme can be activated.</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <span style="font-size:.8rem;color:var(--muted)">🔒 Your data is private</span>
+          <button class="btn-next" onclick="goStep(2)">Next →</button>
+        </div>
+      </div>
+
+      <!-- STEP 2: DIET & GOAL -->
+      <div class="step-panel" id="step2" style="display:none">
+        <div class="modal-header">
+          <div class="step-counter">Step 2 of 6</div>
+          <div class="step-indicator">
+            <div class="step-pip done"></div><div class="step-pip active"></div><div class="step-pip"></div><div class="step-pip"></div><div class="step-pip"></div><div class="step-pip"></div>
+          </div>
+          <h2>Tell us about your diet 🥗</h2>
+          <p>FormIQ uses this to build a meal plan that actually fits your lifestyle.</p>
+        </div>
+        <div class="modal-body">
+          <div class="fiq-group">
+            <label>Diet Style</label>
+            <select id="dietType">
+              <option value="">Select your diet style...</option>
+              <option value="omnivore">Omnivore — I eat everything</option>
+              <option value="vegetarian">Vegetarian — no meat</option>
+              <option value="vegan">Vegan — no animal products</option>
+              <option value="pescatarian">Pescatarian — fish but no meat</option>
+              <option value="gluten_free">Gluten-free</option>
+              <option value="keto">Keto / Low-carb</option>
+              <option value="halal">Halal</option>
+              <option value="kosher">Kosher</option>
+              <option value="other">Other / No restriction</option>
+            </select>
+            <div class="fiq-error" id="err-diet">Please select your diet type.</div>
+          </div>
+          <div class="fiq-group">
+            <label>Describe your typical daily diet (optional)</label>
+            <textarea id="dietDesc" rows="3" placeholder="e.g. I usually skip breakfast, have a sandwich for lunch and a cooked dinner..."></textarea>
+            <div class="fiq-hint">The more detail, the better FormIQ can tailor your plan.</div>
+          </div>
+          <div class="fiq-group">
+            <label>Your Main Goal</label>
+            <select id="mainGoal">
+              <option value="">Select your goal...</option>
+              <option value="lose_weight">Lose weight / burn fat</option>
+              <option value="gain_weight">Gain weight / build muscle</option>
+              <option value="maintain">Maintain weight / get fitter</option>
+            </select>
+            <div class="fiq-error" id="err-goal">Please select your goal.</div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-back" onclick="goStep(1)">← Back</button>
+          <button class="btn-next" onclick="goStep(3)">Next →</button>
+        </div>
+      </div>
+
+      <!-- STEP 3: TRAINING -->
+      <div class="step-panel" id="step3" style="display:none">
+        <div class="modal-header">
+          <div class="step-counter">Step 3 of 6</div>
+          <div class="step-indicator">
+            <div class="step-pip done"></div><div class="step-pip done"></div><div class="step-pip active"></div><div class="step-pip"></div><div class="step-pip"></div><div class="step-pip"></div>
+          </div>
+          <h2>Your training schedule 🏋️</h2>
+          <p>FormIQ will build workouts that fit your actual availability — not an ideal world.</p>
+        </div>
+        <div class="modal-body">
+          <div class="fiq-group">
+            <label>How much time do you have to train per day?</label>
+            <select id="trainTime">
+              <option value="">Select training time...</option>
+              <option value="15">15 minutes</option>
+              <option value="30">30 minutes</option>
+              <option value="45">45 minutes</option>
+              <option value="60">1 hour</option>
+              <option value="90">1.5 hours</option>
+              <option value="120">2+ hours</option>
+            </select>
+            <div class="fiq-error" id="err-traintime">Please select your available training time.</div>
+          </div>
+          <div class="fiq-group">
+            <label>When do you usually train?</label>
+            <div class="fiq-chips">
+              <div class="fiq-chip" onclick="toggleChip(this,'Early Morning (5–7am)')">🌅 Early Morning</div>
+              <div class="fiq-chip" onclick="toggleChip(this,'Morning (7–10am)')">☀️ Morning</div>
+              <div class="fiq-chip" onclick="toggleChip(this,'Lunchtime (12–2pm)')">🕛 Lunchtime</div>
+              <div class="fiq-chip" onclick="toggleChip(this,'Afternoon (2–5pm)')">🌤️ Afternoon</div>
+              <div class="fiq-chip" onclick="toggleChip(this,'Evening (5–8pm)')">🌆 Evening</div>
+              <div class="fiq-chip" onclick="toggleChip(this,'Night (8pm+)')">🌙 Night</div>
+            </div>
+            <div class="fiq-error" id="err-traintime2">Please select when you train.</div>
+          </div>
+          <div class="fiq-group">
+            <label>Training Experience Level</label>
+            <p style="font-size:.8rem;color:var(--muted);margin-bottom:12px">1 = Complete beginner &nbsp;·&nbsp; 10 = Advanced athlete</p>
+            <div class="fiq-slider-wrap">
+              <input type="range" class="fiq-slider" id="expSlider" min="1" max="10" value="5" oninput="updateSlider(this.value)"/>
+              <div class="fiq-slider-labels"><span>Beginner</span><span>Intermediate</span><span>Advanced</span></div>
+              <div class="fiq-slider-val" id="sliderVal">5</div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-back" onclick="goStep(2)">← Back</button>
+          <button class="btn-next" onclick="goStep(4)">Next →</button>
+        </div>
+      </div>
+
+      <!-- STEP 4: LOCATION -->
+      <div class="step-panel" id="step4" style="display:none">
+        <div class="modal-header">
+          <div class="step-counter">Step 4 of 6</div>
+          <div class="step-indicator">
+            <div class="step-pip done"></div><div class="step-pip done"></div><div class="step-pip done"></div><div class="step-pip active"></div><div class="step-pip"></div><div class="step-pip"></div>
+          </div>
+          <h2>Where are you based? 📍</h2>
+          <p>FormIQ uses your location to find nearby gyms and outdoor fitness spots tailored to you.</p>
+        </div>
+        <div class="modal-body">
+          <div class="fiq-row">
+            <div class="fiq-group">
+              <label>Country</label>
+              <input type="text" id="country" placeholder="e.g. United Kingdom"/>
+              <div class="fiq-error" id="err-country">Please enter your country.</div>
+            </div>
+            <div class="fiq-group">
+              <label>City</label>
+              <input type="text" id="city" placeholder="e.g. London"/>
+              <div class="fiq-error" id="err-city">Please enter your city.</div>
+            </div>
+          </div>
+          <div class="fiq-row">
+            <div class="fiq-group">
+              <label>Region / State</label>
+              <input type="text" id="region" placeholder="e.g. Greater London"/>
+              <div class="fiq-error" id="err-region">Please enter your region.</div>
+            </div>
+            <div class="fiq-group">
+              <label>District / Area</label>
+              <input type="text" id="district" placeholder="e.g. Shoreditch"/>
+              <div class="fiq-error" id="err-district">Please enter your district.</div>
+            </div>
+          </div>
+          <div class="fiq-group">
+            <label>Postcode / ZIP</label>
+            <input type="text" id="postcode" placeholder="e.g. E1 6RF"/>
+            <div class="fiq-error" id="err-postcode">Please enter your postcode.</div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-back" onclick="goStep(3)">← Back</button>
+          <button class="btn-next" onclick="goStep(5)">Next →</button>
+        </div>
+      </div>
+
+      <!-- STEP 5: CONTACT + PARENTAL CONSENT -->
+      <div class="step-panel" id="step5" style="display:none">
+        <div class="modal-header">
+          <div class="step-counter">Step 5 of 6</div>
+          <div class="step-indicator">
+            <div class="step-pip done"></div><div class="step-pip done"></div><div class="step-pip done"></div><div class="step-pip done"></div><div class="step-pip active"></div><div class="step-pip"></div>
+          </div>
+          <h2>Your contact details 📬</h2>
+          <p>FormIQ needs your contact info to send your daily plan and programme updates.</p>
+        </div>
+        <div class="modal-body">
+          <div class="fiq-row">
+            <div class="fiq-group">
+              <label>First Name</label>
+              <input type="text" id="firstName" placeholder="e.g. Alex"/>
+              <div class="fiq-error" id="err-firstname">Please enter your first name.</div>
+            </div>
+            <div class="fiq-group">
+              <label>Last Name</label>
+              <input type="text" id="lastName" placeholder="e.g. Johnson"/>
+              <div class="fiq-error" id="err-lastname">Please enter your last name.</div>
+            </div>
+          </div>
+          <div class="fiq-group">
+            <label>Email Address</label>
+            <input type="email" id="emailAddr" placeholder="e.g. alex@example.com"/>
+            <div class="fiq-error" id="err-email">Please enter a valid email address.</div>
+          </div>
+          <div class="fiq-group">
+            <label>Phone Number</label>
+            <input type="tel" id="phoneNum" placeholder="e.g. +44 7700 900123"/>
+            <div class="fiq-error" id="err-phone">Please enter your phone number.</div>
+          </div>
+          <!-- PARENTAL CONSENT — visible only if under 18 -->
+          <div id="parentalConsentSection" style="display:none">
+            <div style="height:1px;background:var(--border);margin:8px 0 22px"></div>
+            <div style="padding:16px;background:rgba(249,115,22,0.07);border:1px solid rgba(249,115,22,0.25);border-radius:12px;margin-bottom:22px">
+              <p style="font-size:.85rem;font-weight:700;color:var(--orange);margin-bottom:6px">⚠️ Parental / Guardian Consent</p>
+              <p style="font-size:.8rem;color:var(--muted);line-height:1.6">You indicated you are under 18. A parent or legal guardian must provide their details and confirm consent before your FormIQ programme can be activated.</p>
+            </div>
+            <div class="fiq-row">
+              <div class="fiq-group">
+                <label>Parent / Guardian First Name</label>
+                <input type="text" id="parentFirst" placeholder="e.g. Sarah"/>
+                <div class="fiq-error" id="err-parentfirst">Required for users under 18.</div>
+              </div>
+              <div class="fiq-group">
+                <label>Parent / Guardian Last Name</label>
+                <input type="text" id="parentLast" placeholder="e.g. Johnson"/>
+                <div class="fiq-error" id="err-parentlast">Required for users under 18.</div>
+              </div>
+            </div>
+            <div class="fiq-group">
+              <label>Parent / Guardian Email</label>
+              <input type="email" id="parentEmail" placeholder="e.g. sarah@example.com"/>
+              <div class="fiq-error" id="err-parentemail">Please enter a valid parent/guardian email.</div>
+            </div>
+            <div class="fiq-group">
+              <label>Parent / Guardian Phone</label>
+              <input type="tel" id="parentPhone" placeholder="e.g. +44 7700 900456"/>
+              <div class="fiq-error" id="err-parentphone">Please enter a parent/guardian phone number.</div>
+            </div>
+            <div class="fiq-group">
+              <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;text-transform:none;letter-spacing:0">
+                <input type="checkbox" id="consentCheck" style="width:18px;height:18px;flex-shrink:0;margin-top:2px;accent-color:var(--green)"/>
+                <span style="font-size:.82rem;color:var(--muted);line-height:1.5">I am the parent or legal guardian of the user named above. I give my full consent for them to use FormIQ and receive a personalised health and fitness programme.</span>
+              </label>
+              <div class="fiq-error" id="err-consent">Parental consent must be confirmed to proceed.</div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-back" onclick="goStep(4)">← Back</button>
+          <button class="btn-next" onclick="goStep(6)">Next →</button>
+        </div>
+      </div>
+
+      <!-- STEP 6: REVIEW -->
+      <div class="step-panel" id="step6" style="display:none">
+        <div class="modal-header">
+          <div class="step-counter">Step 6 of 6</div>
+          <div class="step-indicator">
+            <div class="step-pip done"></div><div class="step-pip done"></div><div class="step-pip done"></div><div class="step-pip done"></div><div class="step-pip done"></div><div class="step-pip active"></div>
+          </div>
+          <h2>You're all set! 🎉</h2>
+          <p>Review your details and let FormIQ build your personalised programme.</p>
+        </div>
+        <div class="modal-body">
+          <div id="reviewSummary" style="display:flex;flex-direction:column;gap:10px"></div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-back" onclick="goStep(5)">← Back</button>
+          <button class="btn-submit-form" onclick="submitForm()">🚀 Build My Programme</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SUCCESS -->
+    <div class="form-success" id="formSuccess">
+      <div class="modal-body" style="padding:48px 40px;text-align:center">
+        <div class="success-circle">🎯</div>
+        <h3>Your FormIQ programme is being built!</h3>
+        <p>We've captured all your details. Your personalised daily plan — workouts, meals, sleep, and habits — is on its way.</p>
+        <div class="summary-pills" id="successPills"></div>
+        <button class="btn-primary" style="margin:0 auto" onclick="closeModal()">✅ Done — Let's Go!</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <footer>
   <p>© 2026 <span style="color:#f1f5f9;font-weight:700">Form</span><span style="color:#22c55e;font-weight:700">IQ</span> · Built with ❤️ and AI</p>
-  <div class="footer-links">
-    <a href="#">Privacy</a>
-    <a href="#">Terms</a>
-    <a href="#">Contact</a>
-  </div>
+  <div class="footer-links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Contact</a></div>
 </footer>
 
 <script>
@@ -410,6 +749,138 @@
     sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.getAttribute('id'); });
     navLinks.forEach(a => { a.style.color = a.getAttribute('href') === '#' + current ? '#f1f5f9' : ''; });
   });
+
+  function openModal() {
+    document.getElementById('modalOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    goStep(1);
+  }
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('modalOverlay').addEventListener('click', function(e) { if (e.target === this) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  let selectedTimes = [];
+
+  function checkAge() {
+    const age = parseInt(document.getElementById('age').value);
+    const banner = document.getElementById('parentalBanner');
+    const cs = document.getElementById('parentalConsentSection');
+    if (age && age < 18) { banner.style.display='block'; if(cs) cs.style.display='block'; }
+    else { banner.style.display='none'; if(cs) cs.style.display='none'; }
+  }
+
+  function goStep(n) {
+    if (n > 1 && !validateStep(n - 1)) return;
+    document.querySelectorAll('.step-panel').forEach(p => p.style.display = 'none');
+    document.getElementById('formSteps').style.display = 'block';
+    document.getElementById('formSuccess').style.display = 'none';
+    const panel = document.getElementById('step' + n);
+    if (panel) { panel.style.display = 'block'; document.getElementById('modal').scrollTop = 0; }
+    if (n === 6) buildReview();
+  }
+
+  function isUnder18() { return parseInt(document.getElementById('age').value) < 18; }
+  const emailRx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  function validateStep(n) {
+    let ok = true;
+    if (n === 1) {
+      if (!document.getElementById('height').value) { showErr('err-height','height'); ok=false; } else hideErr('err-height','height');
+      if (!document.getElementById('weight').value) { showErr('err-weight','weight'); ok=false; } else hideErr('err-weight','weight');
+      if (!document.getElementById('age').value) { showErr('err-age','age'); ok=false; } else hideErr('err-age','age');
+    }
+    if (n === 2) {
+      if (!document.getElementById('dietType').value) { showErr('err-diet','dietType'); ok=false; } else hideErr('err-diet','dietType');
+      if (!document.getElementById('mainGoal').value) { showErr('err-goal','mainGoal'); ok=false; } else hideErr('err-goal','mainGoal');
+    }
+    if (n === 3) {
+      if (!document.getElementById('trainTime').value) { showErr('err-traintime','trainTime'); ok=false; } else hideErr('err-traintime','trainTime');
+      if (selectedTimes.length === 0) { document.getElementById('err-traintime2').style.display='block'; ok=false; } else document.getElementById('err-traintime2').style.display='none';
+    }
+    if (n === 4) {
+      if (!document.getElementById('country').value) { showErr('err-country','country'); ok=false; } else hideErr('err-country','country');
+      if (!document.getElementById('city').value) { showErr('err-city','city'); ok=false; } else hideErr('err-city','city');
+      if (!document.getElementById('region').value) { showErr('err-region','region'); ok=false; } else hideErr('err-region','region');
+      if (!document.getElementById('district').value) { showErr('err-district','district'); ok=false; } else hideErr('err-district','district');
+      if (!document.getElementById('postcode').value) { showErr('err-postcode','postcode'); ok=false; } else hideErr('err-postcode','postcode');
+    }
+    if (n === 5) {
+      if (!document.getElementById('firstName').value.trim()) { showErr('err-firstname','firstName'); ok=false; } else hideErr('err-firstname','firstName');
+      if (!document.getElementById('lastName').value.trim()) { showErr('err-lastname','lastName'); ok=false; } else hideErr('err-lastname','lastName');
+      const em = document.getElementById('emailAddr').value.trim();
+      if (!em || !emailRx.test(em)) { showErr('err-email','emailAddr'); ok=false; } else hideErr('err-email','emailAddr');
+      if (!document.getElementById('phoneNum').value.trim()) { showErr('err-phone','phoneNum'); ok=false; } else hideErr('err-phone','phoneNum');
+      if (isUnder18()) {
+        if (!document.getElementById('parentFirst').value.trim()) { showErr('err-parentfirst','parentFirst'); ok=false; } else hideErr('err-parentfirst','parentFirst');
+        if (!document.getElementById('parentLast').value.trim()) { showErr('err-parentlast','parentLast'); ok=false; } else hideErr('err-parentlast','parentLast');
+        const pe = document.getElementById('parentEmail').value.trim();
+        if (!pe || !emailRx.test(pe)) { showErr('err-parentemail','parentEmail'); ok=false; } else hideErr('err-parentemail','parentEmail');
+        if (!document.getElementById('parentPhone').value.trim()) { showErr('err-parentphone','parentPhone'); ok=false; } else hideErr('err-parentphone','parentPhone');
+        if (!document.getElementById('consentCheck').checked) { document.getElementById('err-consent').style.display='block'; ok=false; } else document.getElementById('err-consent').style.display='none';
+      }
+    }
+    return ok;
+  }
+
+  function showErr(errId, fieldId) { document.getElementById(errId).style.display='block'; document.getElementById(fieldId).classList.add('error'); }
+  function hideErr(errId, fieldId) { document.getElementById(errId).style.display='none'; document.getElementById(fieldId).classList.remove('error'); }
+
+  function toggleChip(el, val) {
+    el.classList.toggle('selected');
+    if (el.classList.contains('selected')) selectedTimes.push(val);
+    else selectedTimes = selectedTimes.filter(v => v !== val);
+  }
+
+  function updateSlider(val) { document.getElementById('sliderVal').textContent = val; }
+
+  function buildReview() {
+    const get = id => document.getElementById(id);
+    const sel = id => { const el = get(id); return el.options[el.selectedIndex]?.text || '—'; };
+    const u18 = isUnder18();
+    const rows = [
+      ['👤 Name', `${get('firstName').value} ${get('lastName').value}`],
+      ['📧 Email', get('emailAddr').value],
+      ['📱 Phone', get('phoneNum').value],
+      ['📏 Height', `${get('height').value} ${sel('heightUnit')}`],
+      ['⚖️ Weight', `${get('weight').value} ${sel('weightUnit')}`],
+      ['🎂 Age', `${get('age').value} years old`],
+      ['🎯 Goal', sel('mainGoal')],
+      ['🥗 Diet', sel('dietType')],
+      ['⏱️ Training Time', sel('trainTime') + ' per day'],
+      ['🕐 When I Train', selectedTimes.join(', ') || '—'],
+      ['💪 Experience', `${get('expSlider').value} / 10`],
+      ['📍 Location', [get('district').value, get('city').value, get('region').value, get('country').value, get('postcode').value].filter(Boolean).join(', ')],
+    ];
+    if (u18) {
+      rows.push(['👨‍👩‍👦 Parent/Guardian', `${get('parentFirst').value} ${get('parentLast').value}`]);
+      rows.push(['✅ Parental Consent', 'Confirmed']);
+    }
+    get('reviewSummary').innerHTML = rows.map(([k,v]) => `
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;padding:12px 16px;background:rgba(255,255,255,0.03);border-radius:10px;border:1px solid var(--border);gap:12px">
+        <span style="font-size:.82rem;color:var(--muted);white-space:nowrap">${k}</span>
+        <span style="font-size:.88rem;font-weight:600;text-align:right">${v}</span>
+      </div>`).join('');
+  }
+
+  function submitForm() {
+    if (!validateStep(5)) { goStep(5); return; }
+    document.getElementById('formSteps').style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+    const goal = document.getElementById('mainGoal');
+    const firstName = document.getElementById('firstName').value;
+    const city = document.getElementById('city').value;
+    const exp = document.getElementById('expSlider').value;
+    document.getElementById('successPills').innerHTML = [
+      `👤 ${firstName}`,
+      `🎯 ${goal.options[goal.selectedIndex].text}`,
+      `📍 ${city}`,
+      `💪 Level ${exp}/10`
+    ].map(t => `<span class="summary-pill">${t}</span>`).join('');
+    document.getElementById('modal').scrollTop = 0;
+  }
 </script>
 </body>
 </html>
